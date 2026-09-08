@@ -1,0 +1,476 @@
+@font-face {
+        font-family: 'SuperBeatPop';
+        src: url('tipos/Super_Beatpop.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'Dunkerque';
+        src: url('tipos/Dunkerque-Regular-FREE-FOR-PERSONAL-USE-ONLY.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'Alfaqix';
+        src: url('tipos/AlfaqixAlgorithm-SemiBold.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'MochaChoco';
+        src: url('tipos/Mocha_Choco.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'WorldStar';
+        src: url('tipos/Worldstar.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'MarleyAntique';
+        src: url('tipos/Marley-Antique.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'Swirlawhirlrotal';
+        src: url('tipos/swirlawhirlrotal.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'Natoor';
+        src: url('tipos/NATOOR.otf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'GroovyClouds';
+        src: url('tipos/Groovy_Clouds.otf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'MalamPoek';
+        src: url('tipos/Malam_Poek.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+      font-family: 'GalettePearls';
+      src: url('tipos/Galette_Pears.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+  }
+  @font-face {
+    font-family: 'Dynamix';
+    src: url('tipos/Dynamix.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+table, td,th {
+    border:1px solid black;
+    text-align: center;
+  
+    }
+td{
+    background-color: bisque;
+
+}
+/*table{
+    background-color: aqua;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    
+}*/
+table{
+    background-color: aqua;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+   font-family: 'Alfaqix';
+   font-size: 25px;
+   color: brown;
+   
+}
+
+caption{
+    /*font-weight: bold;*/
+    color: red;
+    font-family:'SuperBeatPop';
+    font-size: 50px;
+    -webkit-text-stroke: 1px rgb(250, 246, 246);
+    animation: deslizar-abajo 1.5s ease-out forwards infinite; /* Duración de 1.5 segundos */
+}
+
+th{
+    background-color: greenyellow;
+    font-family: 'MochaChoco';
+    color: blueviolet;
+    font-size: 25px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: lighter;
+    -webkit-text-stroke: 1px rgb(250, 246, 246);
+}
+th,td{
+    animation: deslizar-arriba 1.5s ease-out forwards infinite; /* Duración de 1.5 segundos */
+}
+body{
+    background-color: #FFFCAF;
+}
+span{
+    font-size: 22px; 
+    color: #671dd6;
+    font-family: 'GroovyClouds';
+    margin: auto;
+    font-weight: lighter;
+    -webkit-text-stroke: 2px  rgb(137, 240, 108); /* Grosor y color del borde */
+}
+.texto{
+   text-align: center;
+   
+   color: rgb(112, 95, 7);
+   font-family: 'MalamPoek';
+   font-size: 30px;
+   -webkit-text-stroke: 2px rgb(253, 253, 251);
+   overflow: hidden; /* Oculta el texto que aún no se escribe */
+  border-right: 2px solid #000; /* Simula el cursor */
+  white-space: nowrap; /* Evita que el texto salte de línea */
+  animation: typing-derecha 4s steps(20) infinite;
+  /*animation: typing-derecha 4s steps(20) 5;*/
+   
+}
+
+.contenedor-alineado {
+    display: flex; /* Coloca los elementos al mismo nivel */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    gap: 10px; /* Espacio de separación entre la imagen y la tabla */
+}
+
+.dipper {
+    width: 250px; 
+    height: auto;
+    margin-top: 100px;
+    margin-left: 50px;
+    animation: efecto-parpadeo-mover-derecha 4s infinite alternate;
+    /*animation: moverTexto 3s infinite alternate;*/ /* Duración de 3 segundos, se repite infinitamente y va y viene */
+}
+.bill {
+    width: 250px; 
+    height: auto;
+    margin-top: 100px;
+    margin-right: 30px;
+    animation: efecto-parpadeo-mover-izquierda 4s infinite alternate;
+    /*animation: efecto-parpadeo 1s infinite;*/
+}
+@keyframes efecto-parpadeo {
+    0% { opacity: 1; }  /* Completamente visible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    100% { opacity: 1; } /* Vuelve a ser visible */
+}
+@keyframes moverTexto {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100px); /* El texto se desplazará 100px a la derecha */
+    }
+  }
+@keyframes efecto-parpadeo-mover-derecha {
+    0% { opacity: 1;transform: translateX(0); }  /* Completamente visible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    100% { opacity: 1;transform: translateX(1000px); } /* Vuelve a ser visible */
+}
+@keyframes efecto-parpadeo-mover-izquierda {
+    0% { opacity: 1;transform: translateX(0); }  /* Completamente visible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    100% { opacity: 1;transform: translateX(-1000px); } /* Vuelve a ser visible */
+}
+@keyframes deslizar-abajo {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px); /* Comienza 50px más abajo */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Termina en su posición original */
+    }
+  }
+@keyframes deslizar-arriba {
+    0% {
+      opacity: 0;
+      transform: translateY(50px); /* Comienza 50px más abajo */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Termina en su posición original */
+    }
+  }
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+@keyframes typing-arriba {
+    from { width: 0; }
+    to { width: 100%; }
+    0% {
+        opacity: 0;
+        transform: translateY(50px); /* Comienza 50px más abajo */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original */
+      }
+  }
+  @keyframes typing-derecha {
+    from { width: 0; }
+    to { width: 100%; }
+    0% {
+        opacity: 0;
+        transform: translateX(300px); /* Comienza 50px más abajo */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original */
+      }
+  }
+.encabezado{
+     display: flex; /* Coloca los elementos al mismo nivel */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    gap: 45px; /* Espacio de separación entre la imagen y la tabla */
+/*background-color: #6BF074;*/
+  width: 100%;
+    font-family: 'MochaChoco';
+    color: rgb(16, 4, 27);
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: lighter;
+    -webkit-text-stroke: 1px rgb(250, 246, 246);
+    padding: 15px;
+
+    background: linear-gradient(45deg, #b7c0fe, #ACFF93, #b7c0fe);
+    background-size: 300% 300%;
+    animation: AnimationName 6s ease infinite;
+}
+/*.inicio{
+   color: rgb(235, 140, 17); 
+}*/
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.inicio,.nosotros,.catalogo{
+   
+    margin-right: 30px;
+}
+.tienda,.carrito,.qna,.atencion{
+    width: 70px; 
+    height: 70px;
+    margin-left: 50px;
+}
+.bienvenida{
+  background-color: #D9D9D9;
+  width: 75%;
+  font-family: 'GalettePearls';
+   font-size: 38px;
+  margin: 0 auto;
+  text-align: center;
+padding: 8px;
+}
+/*.novedades{
+  background-color: #FFC7C8;
+  width: 76%;
+  box-sizing: border-box;
+  font-family: 'SuperBeatpop';
+  font-size: 80px;
+  margin: 0 auto;
+  text-align: center;
+  color: #671dd6;
+  border: 4px solid rgb(167, 73, 16);
+  
+
+  line-height: 0.05px;       
+  padding-top: 0.2px;      
+  padding-bottom: 0.2px;   
+  padding-left: 15px;    
+  padding-right: 15px;   
+  -webkit-text-stroke: 4px  rgb(137, 240, 108);
+}*/
+.novedades,.populares,.promociones{
+  background-color: #FFC7C8;
+  width: 76%;
+  box-sizing: border-box;
+  font-family: 'SuperBeatpop';
+  font-size: 80px;
+  margin: 0 auto;
+  text-align: center;
+  color: #671dd6;
+  border: 4px solid rgb(167, 73, 16);
+  
+  line-height: 0.05px;       
+  padding-top: 0.2px;      
+  padding-bottom: 0.2px;   
+  padding-left: 15px;    
+  padding-right: 15px;   
+  -webkit-text-stroke: 4px  rgb(137, 240, 108);
+
+  background:
+linear-gradient(63deg, #FFC7C8 23%, transparent 23%) 7px 0,
+linear-gradient(63deg, transparent 74%, #FFC7C8 78%),
+linear-gradient(63deg, transparent 34%, #FFC7C8 38%, #FFC7C8 58%, transparent 62%),
+#f68082;
+background-size: 16px 48px;
+
+animation: moverTextura 2s linear infinite;
+}
+@keyframes moverTextura {
+  0% {
+    background-position: 
+      7px 0, 
+      0 0, 
+      0 0;
+  }
+  100% {
+    /* Desplazamos el eje X e Y para un movimiento diagonal fluido */
+    background-position: 
+      23px 48px,  /* 7px originales + 16px de ancho */
+      16px 48px,  /* 16px de ancho y 48px de alto */
+      16px 48px;  /* 16px de ancho y 48px de alto */
+  }
+}
+
+.novedades_producto,.populares_producto,.promociones_producto{
+  display: flex; /* Coloca los elementos al mismo nivel */
+ align-items: center; /* Alinea los elementos verticalmente al centro */
+ gap: 45px; /* Espacio de separación entre la imagen y la tabla */
+
+width: 70%;
+ font-family: 'Alfaqix';
+ color: rgb(16, 4, 27);
+ font-size: 30px;
+ text-align: center;
+ vertical-align: middle;
+ font-weight: lighter;
+margin: 0 auto;
+ padding: 15px 15px;
+
+}
+.p01,.p02,.p03,.p04,.p05,.p06,.p07,.p08,.p09{
+  width: 40%;
+  height: 40%;
+ border: 3px solid black;
+ /*background-color: #D9D9D9;*/
+
+ background:
+radial-gradient(circle, transparent 20%, #A8B1BB 20%, #A8B1BB 80%, transparent 80%, transparent),
+radial-gradient(circle, transparent 20%, #A8B1BB 20%, #A8B1BB 80%, transparent 80%, transparent) 50px 50px,
+linear-gradient(#D9D9D9 8px, transparent 8px) 0 -4px,
+linear-gradient(90deg, #D9D9D9 8px, transparent 8px) -4px 0;
+background-color: #A8B1BB;
+background-size:100px 100px, 100px 100px, 50px 50px, 50px 50px;
+
+  animation: diagonalLluvia 6s linear infinite;
+
+}
+@keyframes moverPatronMixto {
+  0% {
+    background-position: 
+      0 0, 
+      50px 50px, 
+      0 -4px, 
+      -4px 0;
+  }
+  100% {
+    /* Desplazamos cada capa según su tamaño (100px o 50px) para mantener la simetría */
+    background-position: 
+      100px 100px,      /* Círculo 1 se mueve 100px */
+      150px 150px,      /* Círculo 2 mantiene su desfase (50px + 100px) */
+      50px 46px,        /* Línea horizontal se mueve 50px (0 + 50) en X y (50 - 4px) en Y */
+      46px 50px;        /* Línea vertical se mueve (50 - 4px) en X y (0 + 50) en Y */
+  }
+}
+@keyframes diagonalLluvia {
+  0% {
+    background-position: 
+      0px 0px, 
+      50px 50px, 
+      0px -4px, 
+      -4px 0px;
+  }
+  100% {
+    /* Restamos en X (va a la izquierda) y sumamos en Y (va hacia abajo) */
+    background-position: 
+      -100px 100px, 
+      -50px 150px, 
+      -100px 96px,  /* Movimiento exacto en múltiplos para evitar cortes */
+      -104px 100px;
+  }
+}
+
+.p001,.p002,.p003,.p004,.p005,.p006,.p007,.p008,.p009{
+  width: 140px; 
+  height: 140px;
+  margin: 0 auto;
+}
+
+.footer{
+  display: flex; /* Coloca los elementos al mismo nivel */
+ align-items: center stretch; /* Alinea los elementos verticalmente al centro */
+ gap: 65px; /* Espacio de separación entre la imagen y la tabla */
+/*background-color: #B7C0FE;*/
+width: 100%;
+ font-family: 'MochaChoco';
+ color: rgb(16, 4, 27);
+ font-size: 30px;
+ text-align: center;
+ vertical-align: middle;
+ font-weight: lighter;
+ -webkit-text-stroke: 1px rgb(250, 246, 246);
+ padding: 15px 15px;
+
+ background: linear-gradient(45deg, #b7c0fe, #ACFF93, #b7c0fe);
+    background-size: 300% 300%;
+    animation: AnimationName 6s ease infinite;
+}
+
+@keyframes AnimationName {
+  0%{background-position:0% 25%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 25%}
+}
+.f01,.f02,.f03{
+  width: 50%; 
+  height: 50%;
+  /*border: 2px solid black;*/
+  margin: 0 auto;
+  text-align: center;
+
+  line-height: 0.05px;       
+  padding-top: 0.2px;      
+  padding-bottom: 0.2px;   
+  padding-left: 15px;    
+  padding-right: 15px; 
+}
+.visita02,.contacto02{
+  display: flex;
+ align-items: center; 
+ gap: 15px; 
+ text-align: center;
+ vertical-align: middle;
+ margin: 0 55px;
+  
+}
+.visita03,.contacto03{
+  width: 70px; 
+  height: 70px;
+
+}
+

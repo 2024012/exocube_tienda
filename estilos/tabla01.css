@@ -1,0 +1,230 @@
+@font-face {
+        font-family: 'SuperBeatPop';
+        src: url('tipos/Super_Beatpop.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'Dunkerque';
+        src: url('tipos/Dunkerque-Regular-FREE-FOR-PERSONAL-USE-ONLY.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'Alfaqix';
+        src: url('tipos/AlfaqixAlgorithm-SemiBold.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'MochaChoco';
+        src: url('tipos/Mocha_Choco.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'WorldStar';
+        src: url('tipos/Worldstar.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'MarleyAntique';
+        src: url('tipos/Marley-Antique.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'Swirlawhirlrotal';
+        src: url('tipos/swirlawhirlrotal.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'Natoor';
+        src: url('tipos/NATOOR.otf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'GroovyClouds';
+        src: url('tipos/Groovy_Clouds.otf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'MalamPoek';
+        src: url('tipos/Malam_Poek.otf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+table, td,th {
+    border:1px solid black;
+    text-align: center;
+  
+    }
+td{
+    background-color: bisque;
+
+}
+/*table{
+    background-color: aqua;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+    
+}*/
+table{
+    background-color: aqua;
+    margin: auto;
+    width: 50%;
+    height: 50%;
+   font-family: 'Alfaqix';
+   font-size: 25px;
+   color: brown;
+   
+}
+
+caption{
+    /*font-weight: bold;*/
+    color: red;
+    font-family:'SuperBeatPop';
+    font-size: 50px;
+    -webkit-text-stroke: 1px rgb(250, 246, 246);
+    animation: deslizar-abajo 1.5s ease-out forwards infinite; /* Duración de 1.5 segundos */
+}
+
+th{
+    background-color: greenyellow;
+    font-family: 'MochaChoco';
+    color: blueviolet;
+    font-size: 25px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: lighter;
+    -webkit-text-stroke: 1px rgb(250, 246, 246);
+}
+th,td{
+    animation: deslizar-arriba 1.5s ease-out forwards infinite; /* Duración de 1.5 segundos */
+}
+body{
+    background-color: burlywood;
+}
+span{
+    font-size: 22px; 
+    color: #671dd6;
+    font-family: 'GroovyClouds';
+    margin: auto;
+    font-weight: lighter;
+    -webkit-text-stroke: 2px  rgb(137, 240, 108); /* Grosor y color del borde */
+}
+p{
+   text-align: center;
+   
+   color: rgb(112, 95, 7);
+   font-family: 'MalamPoek';
+   font-size: 30px;
+   -webkit-text-stroke: 2px rgb(253, 253, 251);
+   overflow: hidden; /* Oculta el texto que aún no se escribe */
+  border-right: 2px solid #000; /* Simula el cursor */
+  white-space: nowrap; /* Evita que el texto salte de línea */
+  animation: typing-derecha 4s steps(20) infinite;
+  /*animation: typing-derecha 4s steps(20) 5;*/
+   
+}
+
+.contenedor-alineado {
+    display: flex; /* Coloca los elementos al mismo nivel */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    gap: 10px; /* Espacio de separación entre la imagen y la tabla */
+}
+
+.dipper {
+    width: 250px; 
+    height: auto;
+    margin-top: 100px;
+    margin-left: 50px;
+    animation: efecto-parpadeo-mover-derecha 4s infinite alternate;
+    /*animation: moverTexto 3s infinite alternate;*/ /* Duración de 3 segundos, se repite infinitamente y va y viene */
+}
+.bill {
+    width: 250px; 
+    height: auto;
+    margin-top: 100px;
+    margin-right: 30px;
+    animation: efecto-parpadeo-mover-izquierda 4s infinite alternate;
+    /*animation: efecto-parpadeo 1s infinite;*/
+}
+@keyframes efecto-parpadeo {
+    0% { opacity: 1; }  /* Completamente visible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    100% { opacity: 1; } /* Vuelve a ser visible */
+}
+@keyframes moverTexto {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100px); /* El texto se desplazará 100px a la derecha */
+    }
+  }
+@keyframes efecto-parpadeo-mover-derecha {
+    0% { opacity: 1;transform: translateX(0); }  /* Completamente visible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    100% { opacity: 1;transform: translateX(1000px); } /* Vuelve a ser visible */
+}
+@keyframes efecto-parpadeo-mover-izquierda {
+    0% { opacity: 1;transform: translateX(0); }  /* Completamente visible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    100% { opacity: 1;transform: translateX(-1000px); } /* Vuelve a ser visible */
+}
+@keyframes deslizar-abajo {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px); /* Comienza 50px más abajo */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Termina en su posición original */
+    }
+  }
+@keyframes deslizar-arriba {
+    0% {
+      opacity: 0;
+      transform: translateY(50px); /* Comienza 50px más abajo */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Termina en su posición original */
+    }
+  }
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+@keyframes typing-arriba {
+    from { width: 0; }
+    to { width: 100%; }
+    0% {
+        opacity: 0;
+        transform: translateY(50px); /* Comienza 50px más abajo */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original */
+      }
+  }
+  @keyframes typing-derecha {
+    from { width: 0; }
+    to { width: 100%; }
+    0% {
+        opacity: 0;
+        transform: translateX(300px); /* Comienza 50px más abajo */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original */
+      }
+  }

@@ -1,0 +1,462 @@
+@font-face {
+        font-family: 'SuperBeatPop';
+        src: url('tipos/Super_Beatpop.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'Alfaqix';
+        src: url('tipos/AlfaqixAlgorithm-SemiBold.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'MochaChoco';
+        src: url('tipos/Mocha_Choco.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'WorldStar';
+        src: url('tipos/Worldstar.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'MarleyAntique';
+        src: url('tipos/Marley-Antique.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'Swirlawhirlrotal';
+        src: url('tipos/swirlawhirlrotal.otf') format('opentype');
+        font-weight: normal;
+  font-style: normal;
+    }
+@font-face {
+        font-family: 'Natoor';
+        src: url('tipos/NATOOR.otf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'GroovyClouds';
+        src: url('tipos/Groovy_Clouds.otf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+        font-family: 'MalamPoek';
+        src: url('tipos/Malam_Poek.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+@font-face {
+      font-family: 'GalettePearls';
+      src: url('tipos/Galette_Pears.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+  }
+  @font-face {
+    font-family: 'Dynamix';
+    src: url('tipos/Dynamix.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    background-color: #FFFCAF;
+}
+span{
+    font-size: 22px; 
+    color: #671dd6;
+    font-family: 'GroovyClouds';
+    margin: auto;
+    font-weight: lighter;
+    -webkit-text-stroke: 2px  rgb(137, 240, 108); /* Grosor y color del borde */
+}
+
+@keyframes efecto-parpadeo {
+    0% { opacity: 1; }  /* Completamente visible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    100% { opacity: 1; } /* Vuelve a ser visible */
+}
+@keyframes moverTexto {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100px); /* El texto se desplazará 100px a la derecha */
+    }
+  }
+@keyframes efecto-parpadeo-mover-derecha {
+    0% { opacity: 1;transform: translateX(0); }  /* Completamente visible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    100% { opacity: 1;transform: translateX(1000px); } /* Vuelve a ser visible */
+}
+@keyframes efecto-parpadeo-mover-izquierda {
+    0% { opacity: 1;transform: translateX(0); }  /* Completamente visible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    50% { opacity: 0; } /* Totalmente invisible */
+    100% { opacity: 1;transform: translateX(-1000px); } /* Vuelve a ser visible */
+}
+@keyframes deslizar-abajo {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px); /* Comienza 50px más abajo */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Termina en su posición original */
+    }
+  }
+@keyframes deslizar-arriba {
+    0% {
+      opacity: 0;
+      transform: translateY(50px); /* Comienza 50px más abajo */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Termina en su posición original */
+    }
+  }
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+@keyframes typing-arriba {
+    from { width: 0; }
+    to { width: 100%; }
+    0% {
+        opacity: 0;
+        transform: translateY(50px); /* Comienza 50px más abajo */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original */
+      }
+  }
+  @keyframes typing-derecha {
+    from { width: 0; }
+    to { width: 100%; }
+    0% {
+        opacity: 0;
+        transform: translateX(300px); /* Comienza 50px más abajo */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su posición original */
+      }
+  }
+.encabezado{
+     display: flex; /* Coloca los elementos al mismo nivel */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    gap: 45px; /* Espacio de separación entre la imagen y la tabla */
+/*background-color: #6BF074;*/
+  width: 100%;
+    font-family: 'MochaChoco';
+    color: rgb(16, 4, 27);
+    font-size: 30px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: lighter;
+    -webkit-text-stroke: 1px rgb(250, 246, 246);
+    padding: 15px;
+    position: fixed;
+    z-index: 9999;
+    background: linear-gradient(45deg, #b7c0fe, #ACFF93, #b7c0fe);
+    background-size: 300% 300%;
+    animation: AnimationName 6s ease infinite;
+}
+/*.inicio{
+   color: rgb(235, 140, 17); 
+}*/
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.inicio,.nosotros,.catalogo{
+   
+    margin-right: 30px;
+}
+.tienda,.carrito,.qna,.atencion{
+    width: 70px; 
+    height: 70px;
+    margin-left: 50px;
+}
+.inicio:hover,.nosotros:hover,.catalogo:hover,.tienda:hover,.carrito:hover,.qna:hover,.atencion:hover{
+  transform: scale(1.10);
+}
+/*.novedades{
+  background-color: #FFC7C8;
+  width: 76%;
+  box-sizing: border-box;
+  font-family: 'SuperBeatpop';
+  font-size: 80px;
+  margin: 0 auto;
+  text-align: center;
+  color: #671dd6;
+  border: 4px solid rgb(167, 73, 16);
+  
+
+  line-height: 0.05px;       
+  padding-top: 0.2px;      
+  padding-bottom: 0.2px;   
+  padding-left: 15px;    
+  padding-right: 15px;   
+  -webkit-text-stroke: 4px  rgb(137, 240, 108);
+}*/
+
+@keyframes moverTextura {
+  0% {
+    background-position: 
+      7px 0, 
+      0 0, 
+      0 0;
+  }
+  100% {
+    /* Desplazamos el eje X e Y para un movimiento diagonal fluido */
+    background-position: 
+      23px 48px,  /* 7px originales + 16px de ancho */
+      16px 48px,  /* 16px de ancho y 48px de alto */
+      16px 48px;  /* 16px de ancho y 48px de alto */
+  }
+}
+
+
+@keyframes moverPatronMixto {
+  0% {
+    background-position: 
+      0 0, 
+      50px 50px, 
+      0 -4px, 
+      -4px 0;
+  }
+  100% {
+    /* Desplazamos cada capa según su tamaño (100px o 50px) para mantener la simetría */
+    background-position: 
+      100px 100px,      /* Círculo 1 se mueve 100px */
+      150px 150px,      /* Círculo 2 mantiene su desfase (50px + 100px) */
+      50px 46px,        /* Línea horizontal se mueve 50px (0 + 50) en X y (50 - 4px) en Y */
+      46px 50px;        /* Línea vertical se mueve (50 - 4px) en X y (0 + 50) en Y */
+  }
+}
+@keyframes diagonalLluvia {
+  0% {
+    background-position: 
+      0px 0px, 
+      50px 50px, 
+      0px -4px, 
+      -4px 0px;
+  }
+  100% {
+    /* Restamos en X (va a la izquierda) y sumamos en Y (va hacia abajo) */
+    background-position: 
+      -100px 100px, 
+      -50px 150px, 
+      -100px 96px,  /* Movimiento exacto en múltiplos para evitar cortes */
+      -104px 100px;
+  }
+}
+
+
+.footer{
+  display: flex; /* Coloca los elementos al mismo nivel */
+ align-items: center stretch; /* Alinea los elementos verticalmente al centro */
+ gap: 65px; /* Espacio de separación entre la imagen y la tabla */
+/*background-color: #B7C0FE;*/
+width: 100%;
+ font-family: 'MochaChoco';
+ color: rgb(16, 4, 27);
+ font-size: 30px;
+ text-align: center;
+ vertical-align: middle;
+ font-weight: lighter;
+ -webkit-text-stroke: 1px rgb(250, 246, 246);
+ padding: 15px 15px;
+
+ background: linear-gradient(45deg, #b7c0fe, #ACFF93, #b7c0fe);
+    background-size: 300% 300%;
+    animation: AnimationName 6s ease infinite;
+}
+
+@keyframes AnimationName {
+  0%{background-position:0% 25%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 25%}
+}
+.f01,.f02,.f03{
+  width: 50%; 
+  height: 50%;
+  /*border: 2px solid black;*/
+  margin: 0 auto;
+  text-align: center;
+
+  line-height: 0.05px;       
+  padding-top: 0.2px;      
+  padding-bottom: 0.2px;   
+  padding-left: 15px;    
+  padding-right: 15px; 
+}
+.visita02,.contacto02{
+  display: flex;
+ align-items: center; 
+ gap: 15px; 
+ text-align: center;
+ vertical-align: middle;
+ margin: 0 55px;
+  
+}
+.visita03,.contacto03{
+  width: 70px; 
+  height: 70px;
+
+}
+
+
+.nosotros a {
+  text-decoration: none; /* Esto elimina la línea subrayada por defecto */
+  color: inherit;       /* Hace que el enlace use el mismo color del texto del párrafo */
+}
+.catalogo a {
+  text-decoration: none; /* Esto elimina la línea subrayada por defecto */
+  color: inherit;       /* Hace que el enlace use el mismo color del texto del párrafo */
+}
+.inicio a {
+  text-decoration: none; /* Esto elimina la línea subrayada por defecto */
+  color: inherit;       /* Hace que el enlace use el mismo color del texto del párrafo */
+}
+.qna a {
+  text-decoration: none; /* Esto elimina la línea subrayada por defecto */
+  color: inherit;       /* Hace que el enlace use el mismo color del texto del párrafo */
+}
+.carrito a {
+  text-decoration: none; /* Esto elimina la línea subrayada por defecto */
+  color: inherit;       /* Hace que el enlace use el mismo color del texto del párrafo */
+}
+
+
+.atencion_c{
+  width: 80%;
+  font-family: 'SuperBeatpop';
+   font-size: 100px;
+  margin: 0 auto;
+  text-align: center;
+/*border: 1px solid black;*/
+color:  #ff1e00 ;
+box-sizing: border-box;
+-webkit-text-stroke: 3px /*rgb(235, 133, 23)*/#f39c12;
+
+line-height: 0.05px;       
+  padding-top: 0.2px;      
+  padding-bottom: 0.2px;   
+  padding-left: 15px;    
+  padding-right: 15px; 
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.atencion_c:hover{
+  transform: scale(1.10);
+}
+.at01,.at02,.at03,.at04,.at05,.at06,.at07,.at08,.at09{
+  position:relative;
+  background-color: #FFC7C8;
+  width: 75%;
+  box-sizing: border-box;
+  font-family: 'SuperBeatpop';
+  font-size: 60px;
+  margin: 0 auto;
+  text-align: center;
+  color: #671dd6;
+  border: 4px solid rgb(167, 73, 16);
+  
+  line-height: 0.05px;       
+  padding-top: 0.2px;      
+  padding-bottom: 0.2px;   
+  padding-left: 15px;    
+  padding-right: 15px;   
+  -webkit-text-stroke: 4px  rgb(137, 240, 108);
+
+  background:
+  radial-gradient(circle, transparent 20%, #A8B1BB 20%, #A8B1BB 80%, transparent 80%, transparent),
+  radial-gradient(circle, transparent 20%, #A8B1BB 20%, #A8B1BB 80%, transparent 80%, transparent) 50px 50px,
+  linear-gradient(#D9D9D9 8px, transparent 8px) 0 -4px,
+  linear-gradient(90deg, #D9D9D9 8px, transparent 8px) -4px 0;
+  background-color: #A8B1BB;
+  background-size:100px 100px, 100px 100px, 50px 50px, 50px 50px;
+  
+    animation: diagonalLluvia 6s linear infinite;
+    border-collapse: collapse; 
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 4px 4px 0px rgb(167, 73, 16);
+  
+}
+.at01:hover,.at02:hover,.at03:hover,.at04:hover,.at05:hover,.at06:hover,.at07:hover,.at08:hover,.at09:hover{
+  transform: scale(1.05);
+  box-shadow: 6px 6px 0px rgb(167, 73, 16);
+}
+
+.enlace-faq,.enlace-contacto,.enlace-mapa_ubicacion, .enlace-p_privacidad, .enlace-terminos_u, .enlace-p_cookies,.enlace-p_devolucion, .enlace-testimonio_c, .enlace-formulario_cp {
+  text-decoration: none; /* Quita el subrayado del texto */
+  color: inherit;        /* Mantiene los colores originales de tu texto */
+  display: inline-block; /* O 'block', dependiendo de cómo tengas alineados tus productos */
+   color: inherit;         /* Mantiene el color original de tus textos */
+ width: max-content;     /* Evita que el enlace se estire a lo ancho de toda la pantalla */
+}
+.enlace-faq,.enlace-contacto,.enlace-mapa_ubicacion, .enlace-p_privacidad, .enlace-terminos_u,.enlace-p_cookies, .enlace-p_devolucion, .enlace-testimonio_c, .enlace-formulario_cp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10; /* Se asegura de estar por encima para recibir el clic */
+  text-decoration: none;
+  background: transparent; /* Invisible */
+}
+
+.f01, .f02, .f03 {
+  width: 40%; 
+  height: 30%;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 0.05px;       
+  padding-top: 0.2px;      
+  padding-bottom: 0.2px;   
+  padding-left: 15px;    
+  padding-right: 15px; 
+}
+.f02 .lugar02{
+line-height: 1.2; /* Altura de línea normal y fluida */
+margin-top: 25px;
+margin-bottom: 0;
+justify-content: center;
+
+}
+.f02 .lugar,.f01 .visita,.f03 .contacto{
+margin-bottom: 0px;
+}
+.f01,.f02,.f03{
+  width: 40%; 
+  height: 30%;
+  /*border: 2px solid black;*/
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+  line-height: 0.05px;       
+  padding-top: 0.2px;      
+  padding-bottom: 0.2px;   
+  padding-left: 15px;    
+  padding-right: 15px; 
+  line-height: 1.2; /* Altura de línea normal y fluida */
+  }
+
+  .f01 #foot_social_link {
+    text-decoration: none; /* Esto elimina la línea subrayada por defecto */
+    color: inherit;       /* Hace que el enlace use el mismo color del texto del párrafo */
+  }
+.f03 #foot_wsp_link {
+    text-decoration: none; /* Esto elimina la línea subrayada por defecto */
+    color: inherit;       /* Hace que el enlace use el mismo color del texto del párrafo */
+  }

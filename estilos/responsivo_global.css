@@ -1,0 +1,154 @@
+/* =========================================================================
+   HOJA DE ESTILOS RESPONSIVA GLOBAL PARA DISPOSITIVOS MÓVILES (PANTALLAS <= 768px)
+   Afecta únicamente a celulares y tablets sin alterar el diseño de PC.
+   ========================================================================= */
+
+   @media (max-width: 768px) {
+
+    /* 1. ADAPTACIÓN DE LA CABECERA (HEADER) */
+    .encabezado {
+        position: relative !important; /* Libera el header fijo para evitar colapsar la pantalla móvil */
+        display: flex !important;
+        flex-wrap: wrap !important; /* Permite que los elementos salten si no caben */
+        justify-content: center !important;
+        gap: 10px !important; /* Reduce la separación de 45px original */
+        padding: 10px !important;
+        font-size: 12px !important; /* Reduce el tamaño de fuente lúdica */
+    }
+
+    .tienda, .carrito, .qna, .atencion {
+        width: 25px !important; /* Reduce el tamaño de los iconos de 70px a 45px */
+        height: 25px !important;
+        margin-left: 10px !important;
+    }
+
+    .inicio, .nosotros, .catalogo {
+        margin-right: 10px !important;
+        font-size: 16px !important;
+    }
+
+    /* Compensar el espacio que ocupaba el menú fijo en el body */
+    body > br {
+        display: none !important; /* Oculta los br repetitivos que empujaban el diseño hacia abajo */
+    }
+
+    /* 2. OPTIMIZACIÓN DE TÍTULOS GIGANTES (Evita desbordamiento lateral) */
+    .somos, .faq, .atencion_c, .catalogo_p {
+        font-size: 42px !important; /* Reduce fuentes de 120px a 42px aptas para pantallas móviles */
+        -webkit-text-stroke: 1.5px #f39c12 !important;
+        width: 90% !important;
+        line-height: 1.2 !important;
+        margin: 20px auto !important;
+    }
+
+    .experiencia, .ubicamos, .informacion, .populares, .atendemos, .novedades ,.promociones {
+        font-size: 40px !important;
+        -webkit-text-stroke: 2px  rgb(137, 240, 108) !important;
+        line-height: 1.2 !important;
+        width: 70% !important;
+        height: 50%;
+        padding: 2px;
+
+    }
+
+    /* 3. ADAPTACIÓN DE LAS GRILLAS DE PRODUCTOS (Se apilan en vertical de 1 en 1) */
+    .novedades_producto, .populares_producto, .promociones_producto {
+        flex-direction: column !important; /* Cambia de horizontal a vertical */
+        align-items: center !important;
+        gap: 25px !important;
+        width: 90% !important;
+    }
+    .item-div .enlace-producto{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 50%;
+        z-index: 10; /* Se asegura de estar por encima para recibir el clic */
+        text-decoration: none;
+        background: transparent; /* Invisible */
+      }
+    /* Escalabilidad de las tarjetas individuales en móvil */
+    .p01, .p02, .p03, .p04, .p05, .p06, .p07, .p08, .p09 {
+        width: 85% !important; /* Ocupan casi todo el ancho de la pantalla móvil */
+        max-width: 260px !important;
+        height: 280px !important; /* Altura cómoda */
+    }
+
+    /* 4. ADAPTACIÓN DE LAS TABLAS DE ESPECIFICACIONES Y CHECKOUT */
+    .tabla-producto, .table01, .table02, .table03 {
+        width: 95% !important; /* Fuerza a las tablas a no salirse de la pantalla */
+        font-size: 16px !important; /* Tamaño de fuente legible en celulares */
+        margin: 20px auto !important;
+    }
+
+    .tabla-producto td, .table01 td, .table02 td, .table03 td {
+        padding: 10px !important;
+        height: auto !important;
+    }
+
+    .col-etiqueta {
+        width: 60% !important;
+        padding-left: 10px !important;
+    }
+
+    .col-valor {
+        width: 40% !important;
+    }
+
+    /* 5. ADAPTACIÓN DEL BLOQUE DE DIRECCIÓN Y GOOGLE MAPS (Páginas de ubicación/Nosotros) */
+    .ubicamos_texto {
+        flex-direction: column !important; /* Apila el texto arriba y el mapa abajo */
+        gap: 20px !important;
+        width: 90% !important;
+    }
+
+    .ubicamos_texto02 {
+        width: 100% !important; /* Ocupa todo el ancho */
+    }
+
+    .ubicamos_texto03, iframe.ubicamos_texto03 {
+        width: 100% !important; /* El mapa de Google se expande al 100% de la pantalla */
+        height: 250px !important;
+    }
+
+    .somos_texto, .experiencia_texto, .atendemos_texto {
+        width: 90% !important;
+        font-size: 18px !important; /* Reduce textos informativos para que no se canse la vista */
+        padding: 15px !important;
+    }
+
+    /* 6. ADAPTACIÓN DEL FOOTER EN CELULARES (Se apila verticalmente) */
+    .footer {
+        flex-direction: column !important; /* Apila las 3 columnas de contacto del footer */
+        gap: 20px !important;
+        padding: 20px 10px !important;
+        text-align: center !important;
+    }
+
+    .f01, .f02, .f03 {
+        width: 100% !important; /* Cada bloque de contacto toma el ancho completo de la pantalla */
+        height: auto !important;
+        margin-bottom: 10px !important;
+    }
+
+    .visita02, .contacto02 {
+        justify-content: center !important;
+        margin: 10px auto !important;
+    }
+
+    .visita03, .contacto03 {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    .bienvenida{
+        background-color: #D9D9D9;
+        width: 25%;
+        height: 20%;
+        font-family: 'GalettePearls';
+         font-size: 18px;
+        margin: 0 auto;
+        text-align: center;
+      padding: 4px;
+      }
+}
