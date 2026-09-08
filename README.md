@@ -1,5 +1,6 @@
 # exocube_tienda
-# REFLEXION SOBRE LA RESPONSIVIDAD Y SUBIDA DEL SITIO WEB
+#
+REFLEXION SOBRE LA RESPONSIVIDAD Y SUBIDA DEL SITIO WEB
 #
 Durante el desarrollo de la WebApp exo_cube para su publicación en el hosting, 
 enfrenté dos dificultades principales al aplicar el diseño responsivo. 
