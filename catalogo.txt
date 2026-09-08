@@ -1,0 +1,238 @@
+<?php
+require_once 'conexion.php';
+session_start();
+
+// 1. Obtener Categorías para cargar en el primer selector
+try {
+    $stmt_cats = $pdo->query("SELECT * FROM categorias ORDER BY nombre_cat ASC");
+    $categorias_list = $stmt_cats->fetchAll();
+    
+    // Obtener el precio del producto más caro para generar los rangos de precios de 10 en 10
+    $stmt_max = $pdo->query("SELECT MAX(precio) FROM productos");
+    $max_precio = ceil($stmt_max->fetchColumn());
+    
+    // Generar opciones de rangos de precio dinámicamente
+    $rango_opciones = [];
+    for ($i = 0; $i < $max_precio; $i += 10) {
+        $rango_opciones[] = [
+            'min' => $i,
+            'max' => $i + 10,
+            'label' => "S/. $i a S/. " . ($i + 10)
+        ];
+    }
+} catch (Exception $e) {
+    die("Error al cargar filtros de la base de datos.");
+}
+
+// 2. Construir la consulta SQL dinámica basada en la búsqueda y filtros activos
+$condiciones = ["stock > 0", "disponibilidad = 1"];
+$parametros = [];
+
+// Filtro A: Búsqueda por Nombre (Coincidencia parcial)
+if (!empty($_GET['search'])) {
+    $condiciones[] = "nombre_prod LIKE ?";
+    $parametros[] = "%" . $_GET['search'] . "%";
+}
+
+// Filtro B: Categoría seleccionada
+if (!empty($_GET['category'])) {
+    $condiciones[] = "id_categoria = ?";
+    $parametros[] = (int)$_GET['category'];
+}
+
+// Filtro C: Rango de Precios (Formato min-max)
+if (!empty($_GET['price_range'])) {
+    $rango_partes = explode('-', $_GET['price_range']);
+    if (count($rango_partes) == 2) {
+        $condiciones[] = "precio >= ? AND precio <= ?";
+        $parametros[] = (float)$rango_partes[0];
+        $parametros[] = (float)$rango_partes[1];
+    }
+}
+
+// Unir todas las condiciones con "AND"
+$where_sql = implode(" AND ", $condiciones);
+
+// 3. Configurar Paginación (Máximo 9 productos en pantalla)
+$productos_por_pagina = 9;
+
+// CORRECCIÓN: Forzar de forma rígida que la página capturada sea un entero (int)
+$pagina_actual = isset($_GET['p']) ? (int)$_GET['p'] : 1;
+if ($pagina_actual < 1) $pagina_actual = 1;
+$offset = (int)(($pagina_actual - 1) * $productos_por_pagina);
+
+try {
+    // Contar total de productos resultantes del filtrado
+    $stmt_count = $pdo->prepare("SELECT COUNT(*) FROM productos WHERE $where_sql");
+    $stmt_count->execute($parametros);
+    $total_productos_filtrados = $stmt_count->fetchColumn();
+
+    // Calcular páginas totales
+    $total_paginas = ceil($total_productos_filtrados / $productos_por_pagina);
+
+    // CORRECCIÓN RADICAL Y BULLETPROOF:
+    // Concatenamos directamente los enteros de LIMIT y OFFSET en la cadena SQL.
+    // Esto evita que PDO envíe estos valores como texto, solucionando el bug de que siempre cargara la página 1 en XAMPP.
+    $select_sql = "SELECT * FROM productos WHERE " . $where_sql . " ORDER BY id_producto DESC LIMIT " . (int)$productos_por_pagina . " OFFSET " . (int)$offset;
+    
+    $stmt_select = $pdo->prepare($select_sql);
+    
+    // Ejecutar pasando únicamente los filtros de búsqueda (los parámetros de paginación ya están inyectados de forma segura)
+    $stmt_select->execute($parametros);
+    $productos = $stmt_select->fetchAll();
+
+    // Agrupar productos de 3 en 3 para tus filas del catálogo
+    $filas_productos = array_chunk($productos, 3);
+
+} catch (Exception $e) {
+    die("Error al procesar el catálogo: " . $e->getMessage());
+}
+
+// Guardar los parámetros de la URL para que no se pierdan al paginar (Siguiente/Anterior)
+$query_params = $_GET;
+?>
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+   <meta charset="utf-8">
+   <title>CATALOGO</title>
+   <link href="estilos/catalogo.css" rel="stylesheet">
+   <meta name="viewport" content="width=device-width, initial-scale=0.30">
+   
+   <style>
+      /* =========================================================================
+         CORRECCIÓN UX CRÍTICA: Elevar los botones de paginación para que los
+         enlaces transparentes e invisibles de las fotos de arriba no los tapen.
+         ========================================================================= */
+      .paginacion-contenedor {
+          position: relative !important;
+          z-index: 9999 !important; /* Capa súper elevada */
+          display: flex !important;
+          justify-content: center !important;
+          margin: 40px auto !important;
+      }
+      .btn-paginacion {
+          position: relative !important;
+          z-index: 10000 !important; /* Capa por encima de todo */
+          cursor: pointer !important;
+          pointer-events: auto !important; /* Asegura la acción del clic */
+      }
+   </style>
+</head>
+<body>
+   
+   <!-- Incluye la cabecera dinámica autogestionable de exo_cube -->
+   <?php include 'header.php'; ?>
+   <br><br><br><br><br><br><br><br><br><br>
+   
+   <div class="catalogo_p">  
+      <p>CATÁLOGO DE PRODUCTOS</p>
+   </div>
+   <br><br><br>
+
+   <!-- Formulario unificado de Búsqueda y Filtros con envío automático por JS -->
+   <form action="catalogo.php" method="GET" id="form-filtros">
+      <div class="caja-busqueda">
+         <input type="text" name="search" placeholder="Buscar por nombre..." class="input-busqueda" value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+         <button type="submit" class="boton-busqueda">🔍</button>
+      </div>
+      <br><br><br>
+      
+      <!-- Selector dinámico de Categorías -->
+      <div class="contenedor-selector">
+         <select name="category" class="selector-opciones" onchange="document.getElementById('form-filtros').submit();">
+            <option value="" disabled <?php echo empty($_GET['category']) ? 'selected' : ''; ?>>Selecciona una categoria...</option>
+            <option value="">Todas las Categorías</option>
+            <?php foreach ($categorias_list as $cat): ?>
+               <option value="<?php echo $cat['id_categoria']; ?>" <?php echo (isset($_GET['category']) && $_GET['category'] == $cat['id_categoria']) ? 'selected' : ''; ?>>
+                  <?php echo htmlspecialchars($cat['nombre_cat']); ?>
+               </option>
+            <?php endforeach; ?>
+         </select>
+      </div>
+      <br><br><br>
+      
+      <!-- Selector dinámico de Rango de Precios -->
+      <div class="contenedor-selector2">
+         <select name="price_range" class="selector-opciones" onchange="document.getElementById('form-filtros').submit();">
+            <option value="" disabled <?php echo empty($_GET['price_range']) ? 'selected' : ''; ?>>Selecciona un rango de precios...</option>
+            <option value="">Todos los Precios</option>
+            <?php foreach ($rango_opciones as $rango): 
+               $valor_rango = $rango['min'] . "-" . $rango['max'];
+            ?>
+               <option value="<?php echo $valor_rango; ?>" <?php echo (isset($_GET['price_range']) && $_GET['price_range'] == $valor_rango) ? 'selected' : ''; ?>>
+                  <?php echo htmlspecialchars($rango['label']); ?>
+               </option>
+            <?php endforeach; ?>
+         </select>
+      </div>
+   </form>
+   
+   <br><br><br>
+
+   <?php 
+   $global_index = 1;
+
+   if (!empty($filas_productos)):
+       foreach ($filas_productos as $index_fila => $productos_fila):
+           if ($index_fila == 0) $clase_fila = "novedades_producto";
+           elseif ($index_fila == 1) $clase_fila = "populares_producto";
+           else $clase_fila = "promociones_producto";
+   ?>
+           <div class="<?php echo $clase_fila; ?>">  
+              <?php foreach ($productos_fila as $item): 
+                  $clase_div = "p0" . $global_index;
+                  $clase_img = "p00" . $global_index;
+                  $clase_p = "p000" . $global_index;
+                  $img_src = !empty($item['imagen_frontal']) ? $item['imagen_frontal'] : 'product_images/57.png';
+              ?>
+                  <div class="<?php echo $clase_div; ?>"><br>
+                     <img src="<?php echo htmlspecialchars($img_src); ?>" alt="Producto" class="<?php echo $clase_img; ?>">
+                     <p class="<?php echo $clase_p; ?>"><?php echo htmlspecialchars($item['nombre_prod']); ?></p>
+                     <a href="producto.php?id=<?php echo $item['id_producto']; ?>" class="enlace-producto01" target="_blank"></a>
+                  </div>
+              <?php 
+                  $global_index++;
+              endforeach; ?>
+           </div>
+           <br><br><br>
+   <?php 
+       endforeach;
+   else:
+       echo "<center><p style='font-family:Alfaqix; font-size:24px; color:#666;'>No se encontraron productos que coincidan con la búsqueda.</p></center><br><br>";
+   endif; 
+   ?>
+
+   <!-- Sistema de Paginación Inteligente Corregido (Mantiene filtros y funciona en PHP 8) -->
+   <?php if ((int)$total_paginas > 1): ?>
+       <div class="paginacion-contenedor">
+          <?php 
+          // Clonamos de forma segura los parámetros GET activos en la URL
+          $query_params_prev = $_GET;
+          $query_params_next = $_GET;
+          ?>
+
+          <!-- Botón ANTERIOR (CORREGIDO: Ahora aparecerá al avanzar a la pág 2) -->
+          <?php if ((int)$pagina_actual > 1): 
+              $query_params_prev['p'] = (int)$pagina_actual - 1;
+              $link_anterior = "catalogo.php?" . http_build_query($query_params_prev);
+          ?>
+              <a href="<?php echo $link_anterior; ?>" class="btn-paginacion" style="margin-right: 20px;">ANTERIOR</a>
+          <?php endif; ?>
+          
+          <!-- Botón SIGUIENTE (CORREGIDO: Construcción dinámica del query string con filtros) -->
+          <?php if ((int)$pagina_actual < (int)$total_paginas): 
+              $query_params_next['p'] = (int)$pagina_actual + 1;
+              $link_siguiente = "catalogo.php?" . http_build_query($query_params_next);
+          ?>
+              <a href="<?php echo $link_siguiente; ?>" class="btn-paginacion">SIGUIENTE</a>
+          <?php endif; ?>
+       </div>
+   <?php endif; ?>
+   <br><br><br>
+
+   <!-- Reemplazo del Footer Estático por el Footer Dinámico unificado -->
+   <?php include 'footer.php'; ?>
+  
+</body>
+</html>
